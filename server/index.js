@@ -42,7 +42,7 @@ app.use(passport.session());
 passport.use(new googleStrategyInstance({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "http://localhost:5000/auth/google/callback"
+  callbackURL: "https://court-booking-3.onrender.com/auth/google/callback"
 },(accessToken, refreshToken, profile, done) => {
     return done(null, profile);
 } ));
@@ -63,10 +63,13 @@ app.get('/auth/google', passport.authenticate('google',
 ); 
 
 app.get('/auth/google/callback', passport.authenticate('google', {
-  failureRedirect: 'http://localhost:5173/login',
+  failureRedirect: 'https://court-booking-q3qy.vercel.app/login',
 }),googleAuth,
  (req, res, next) => {
-    res.redirect('http://localhost:5173/');
+    res.redirect('https://court-booking-q3qy.vercel.app/');
+});
+app.get("/", (req, res) => {
+  res.send("QuickCourt API Running 🚀");
 });
 
 app.use('/api/user', userRoutes);
