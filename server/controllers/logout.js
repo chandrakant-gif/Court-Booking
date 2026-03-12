@@ -1,4 +1,4 @@
-import User from "../models/user.js";
+
 
 const logout = async (req, res, next)=>{
   res.clearCookie('connect.sid')

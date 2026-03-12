@@ -1,4 +1,4 @@
-import User from "../models/user.js";
+import User from "../models/User.js";
 import resetToken from "../utils/resetToken.js";
 
 const verifyOtp = async (req, res, next) => {

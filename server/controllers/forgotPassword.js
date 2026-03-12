@@ -1,4 +1,4 @@
-import User from "../models/user.js";
+import User from "../models/User.js";
 import sendmail from "../utils/sendmail.js";
 
 const forgotPassword = async (req, res, next) => {

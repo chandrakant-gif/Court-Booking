@@ -1,5 +1,5 @@
 import Court from "../models/Court.js";
-import User from "../models/user.js";
+import User from "../models/User.js";
 
 
 const registerCourt = async (req, res, next) => {
