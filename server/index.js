@@ -54,6 +54,9 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+app.get("/", (req, res) => {
+  res.send("QuickCourt API Running 🚀");
+}); 
 
 //routes
 app.get('/auth/google', passport.authenticate('google', 
@@ -68,9 +71,7 @@ app.get('/auth/google/callback', passport.authenticate('google', {
  (req, res, next) => {
     res.redirect('https://court-booking-q3qy.vercel.app/');
 });
-app.get("/", (req, res) => {
-  res.send("QuickCourt API Running 🚀");
-});
+
 
 app.use('/api/user', userRoutes);
 app.use('/api/court',courtRoutes);
