@@ -18,6 +18,7 @@ import errorHandler from './middlewares/errorHandler.js';
 const googleStrategyInstance = googleStrategy.Strategy;
 
 const app = express();
+app.set("trust proxy", 1);
 
 //middlewares
 app.use(cors({
@@ -36,6 +37,7 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 
 
 app.use(express.json());
