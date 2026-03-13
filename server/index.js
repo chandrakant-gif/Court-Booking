@@ -21,14 +21,22 @@ const app = express();
 
 //middlewares
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    process.env.FRONTEND_URL,
-    "https://court-booking-qyq3-4o1sl4e5b-chandrakants-projects-b4928cb0.vercel.app",
-    "https://court-booking-qyq3.vercel.app"
-  ],
-  credentials: true
+  origin: (origin, callback) => {
+    if (
+      !origin ||
+      origin.includes("vercel.app") ||
+      origin.includes("localhost")
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ limit: "5mb", extended: false }));
@@ -37,6 +45,10 @@ app.use(session({
   secret: 'secret',
   resave: false,
   saveUninitialized: true,
+  cookie: {
+    secure: true,
+    sameSite: "none"
+  }
 }));
 
 app.use(cookieParser());
