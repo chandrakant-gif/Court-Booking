@@ -57,7 +57,7 @@ app.use(cookieParser());
 
 //google login configuration
 app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.session());
 
 passport.use(new googleStrategyInstance({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -71,13 +71,13 @@ passport.use(new googleStrategyInstance({
   return done(null, profile);
 }));
 
-passport.serializeUser((user, done) => {
-  done(null, user);
-});
+// passport.serializeUser((user, done) => {
+//   done(null, user);
+// });
 
-passport.deserializeUser((user, done) => {
-  done(null, user);
-});
+// passport.deserializeUser((user, done) => {
+//   done(null, user);
+// });
 
 
 // ROOT ROUTE (Fix Cannot GET /)
