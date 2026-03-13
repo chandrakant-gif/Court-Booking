@@ -22,7 +22,9 @@ const app = express();
 //middlewares
 app.use(cors({
   origin: [
-    'https://court-booking-q3qy.vercel.app',
+    "http://localhost:5173",
+    process.env.FRONTEND_URL,
+    "https://court-booking-q3qy.vercel.app"
   ],
   credentials: true
 }));
