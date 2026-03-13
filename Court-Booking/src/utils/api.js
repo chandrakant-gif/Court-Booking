@@ -1,7 +1,7 @@
 
 
 const api = () => {
-  const local = 'http://localhost:5000/';
+  const local = 'https://court-booking-back.onrender.com';
 
   const list = {
     registerUser: `${local}api/user/signup`,
