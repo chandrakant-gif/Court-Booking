@@ -43,15 +43,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ limit: "5mb", extended: false }));
 
-app.use(session({
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    secure: true,
-    sameSite: "none"
-  }
-}));
+
 
 app.use(cookieParser());
 
@@ -68,7 +60,10 @@ passport.use(new googleStrategyInstance({
       : "http://localhost:5000/auth/google/callback"
 },
 (accessToken, refreshToken, profile, done) => {
-  return done(null, profile);
+  return done(null, {
+    email: profile.emails?.[0]?.value,
+    name: profile.displayName
+  });
 }));
 
 // passport.serializeUser((user, done) => {
