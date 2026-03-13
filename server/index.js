@@ -24,6 +24,7 @@ app.use(cors({
   origin: [
     "http://localhost:5173",
     process.env.FRONTEND_URL,
+    "https://court-booking-qyq3-4o1sl4e5b-chandrakants-projects-b4928cb0.vercel.app",
     "https://court-booking-qyq3.vercel.app"
   ],
   credentials: true
