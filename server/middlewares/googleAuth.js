@@ -15,9 +15,15 @@ const googleAuth = async (req, res, next) => {
 
 }
 
-  const accessToken = generateToken(findedUser ? findedUser.email : savedUser.email);
+  const user = findedUser ? findedUser : savedUser;
 
-  res.cookie('accessToken', accessToken, {httpOnly: true, secure: true, sameSite: 'none'} );
+const accessToken = generateToken(
+  user._id,
+  user.email,
+  user.role
+);
+
+  res.cookie('accessToken', accessToken, {httpOnly: true, secure: false, sameSite: 'lax'} );
 
     next(); 
 }catch(err){
